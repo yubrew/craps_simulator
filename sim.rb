@@ -42,6 +42,8 @@ p "mean: #{mean(s.outcomes)}"
 modes = modes(s.outcomes)
 p "modes:"
 p "-----------"
+cumulative_throws = 0
 modes.each do |value, count|
-  p "#{value}: #{count}"
+  cumulative_throws += count
+  p "dice sum:#{value} throws:#{count} cumulative throws: #{cumulative_throws}"
 end
