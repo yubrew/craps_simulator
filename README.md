@@ -15,3 +15,6 @@ Visualize outcomes
 Incorporate predefined betting strategies
 Incorporate dynamic bet sizing
 Incorporate dice setting and "skill"
+
+
+run code with `ruby sim.rb`

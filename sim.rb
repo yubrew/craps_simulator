@@ -27,20 +27,21 @@ def median(array, already_sorted=false)
 end
 
 def modes(array, find_all=true)
+  # https://www.chrisjmendez.com/2018/10/14/mean-median-mode-standard-deviation/
   histogram = array.inject(Hash.new(0)) { |h, n| h[n] += 1; h }
-  modes = nil
-  histogram.each_pair do |item, times|
-    modes << item if modes && times == modes[0] and find_all
-    modes = [times, item] if (!modes && times>1) or (modes && times>modes[0])
-  end
-  return modes ? modes[1...modes.size] : modes
+  return histogram.sort_by{|k, v| -v}
 end
 
 s = Sim.new
-1000.times.each do
+1000000.times.each do
   s.run
 end
 p "outcomes: #{s.outcomes.join(',')}"
 p "median: #{median(s.outcomes)}"
 p "mean: #{mean(s.outcomes)}"
-p "mode: #{modes(s.outcomes)}"
+modes = modes(s.outcomes)
+p "modes:"
+p "-----------"
+modes.each do |value, count|
+  p "#{value}: #{count}"
+end
